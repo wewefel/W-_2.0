@@ -43,7 +43,7 @@ def scrape_url(url):
     chrome_options.add_argument("--headless")
     chrome_options.add_argument("--no-sandbox")
     chrome_options.add_argument("--disable-dev-shm-usage")
-    chrome_driver_path = r"C:\Users\wefel\chromedriver-win64\chromedriver-win64\chromedriver.exe" #This is an example. Change this to YOUR path to chromedriver.exe
+    chrome_driver_path = r"C:\....chromedriver.exe" #This is an example. Change this to YOUR path to chromedriver.exe
     service = Service(chrome_driver_path)
     driver = webdriver.Chrome(service=service, options=chrome_options)
     
