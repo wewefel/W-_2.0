@@ -43,6 +43,13 @@ We use selenium for scraping and GPT-4o-mini for text processing.
 **3. Create an OpenAI account and get an API key (or just use mine from Slack):**
 * Go [here](https://platform.openai.com/docs/overview) to create an account and make your own API key.
 
+**4. Install ChromeDriver:**
+* Find your version by opening Chrome, click on the three dots in the upper right, go to **Help** > **About Google Chrome**, and note the version number of your Chrome browser.
+* If your version is > 115, go [here](https://googlechromelabs.github.io/chrome-for-testing/)
+* After downloading ChromeDriver, extract the contents of the ZIP file.
+* Optional: to make ChromeDriver accessible globally, move the extracted 'chromedriver.exe' to a directory of your choice (e.g., 'C:\WebDrivers'), edit the sustem environment variables, edit the 'Path' variable, and click New and add the path to the directory where you placed 'chromedriver.exe'.
+* Copy the path to 'chromedriver.exe' and paste in line 46 of main.py.
+
 **4. Clone Github Repo:**
 * Go to the [Github repo](https://github.com/wewefel/Sustainability_Web_Scraper_2.0)
 * Method 1: Click code, download as zip file, then extract all.
