@@ -1,6 +1,6 @@
 <a name="top"></a>
 
-# Sustainability Webscraper 2.0
+# Sustainability Web Scraper 2.0
 
 ## Table of Contents
 1. [Overview](#overview)
