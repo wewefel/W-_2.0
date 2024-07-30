@@ -38,7 +38,7 @@ We use selenium for scraping and GPT-4o-mini for text processing.
 * In Configuration, add an Active, Blocked, or Pinned URL (any arbitrary URL) so you can click 'Publish' in the top right.
 * Then go to 'Production, then copy the Custom Configuration ID.
 * Then click 'Click to issue free trial key' and follow the steps to obtain your API_KEY.
-* Rename `.env.example` to `.env` in the root directory of your project and add your `API_KEY` and `CUSTOM_CONFIG_ID`.
+* Add your `API_KEY` and `CUSTOM_CONFIG_ID` to the .env file.
 
 **3. Create an OpenAI account and get an API key (or just use mine from Slack):**
 * Go [here](https://platform.openai.com/docs/overview) to create an account and make your own API key.
