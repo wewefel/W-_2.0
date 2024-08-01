@@ -13,8 +13,12 @@
 
 ## Overview
 This project consists of a Python web scraper that searches for and extracts information related to environmental and sustainability efforts of a specified company from URLs that are not the company's official website.  
-  
+ 
 We use selenium for scraping and GPT-4o-mini for text processing.
+
+**Input**: company name and website from .csv file.
+
+**Output**: 2 unique .txt files for each company (unfiltered file and a filtered file).
 
 ### Features
 - **Custom Bing Search API**: Leverages Bing's Custom Search JSON API to retrieve relevant URLs based on the query.
