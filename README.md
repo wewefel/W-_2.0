@@ -84,4 +84,3 @@ We use selenium for scraping and GPT-4o-mini for text processing.
 
 * Last updated 8/1/2024
   * Incorrect company name can lead to incorrect or lack of search engine results.
-  * Areas in need of improvement: removing the stupid concurrency features I added because the random error notifications in the terminal are so annoying and I don't even think it improved the scraping speed by that much.
