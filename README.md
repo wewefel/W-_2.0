@@ -52,7 +52,7 @@ We use selenium for scraping and GPT-4o-mini for text processing.
 * If your version is >115, go [here](https://googlechromelabs.github.io/chrome-for-testing/)
 * After downloading ChromeDriver, extract the contents of the ZIP file.
 * Optional: to make ChromeDriver accessible globally, move the extracted 'chromedriver.exe' to a directory of your choice (e.g., 'C:\WebDrivers'), edit the sustem environment variables, edit the 'Path' variable, and click New and add the path to the directory where you placed 'chromedriver.exe'.
-* Copy the path to 'chromedriver.exe' and paste in line 46 of main.py.
+* Copy the path to 'chromedriver.exe' and paste in line 46 of code.
 
 **4. Clone Github Repo:**
 * Go to the [Github repo](https://github.com/wewefel/Sustainability_Web_Scraper_2.0)
