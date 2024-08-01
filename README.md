@@ -54,7 +54,7 @@ We use selenium for scraping and GPT-4o-mini for text processing.
 * Optional: to make ChromeDriver accessible globally, move the extracted 'chromedriver.exe' to a directory of your choice (e.g., 'C:\WebDrivers'), edit the sustem environment variables, edit the 'Path' variable, and click New and add the path to the directory where you placed 'chromedriver.exe'.
 * Copy the path to 'chromedriver.exe' and paste in line 46 of code.
 
-**4. Clone Github Repo:**
+**5. Clone Github Repo:**
 * Go to the [Github repo](https://github.com/wewefel/Sustainability_Web_Scraper_2.0)
 * Method 1: Click code, download as zip file, then extract all.
   * Method 2: Use 'git clone'
@@ -72,7 +72,7 @@ We use selenium for scraping and GPT-4o-mini for text processing.
    ``` sh
    git clone https://github.com/wewefel/Sustainability_Web_Scraper_2.0.git
    ```
-**5. Install Requirements:**
+**6. Install Requirements:**
 * Open terminal or command prompt (recommended: create a virtual environment first):
   ``` sh
   pip install openai requests beautifulsoup4 python-dotenv selenium
