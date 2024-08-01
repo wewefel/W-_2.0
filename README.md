@@ -78,8 +78,6 @@ We use selenium for scraping and GPT-4o-mini for text processing.
 
 ## Limitations
 
-* Last updated 7/30/2024
-  * I have created a version of the code that is capable of taking a .csv file containing a list of companies and their corresponding websites for large-scale 3rd party capture, but this is not complete yet.
-  * Once code is capable of taking .csv file of list of companies, the code will make a separate .txt file for each company.
+* Last updated 8/1/2024
   * Incorrect company name can lead to incorrect or lack of search engine results.
-  * Areas in need of improvement: fine-tuning the GPT prompt, fine-tuning the search input (currently uses "{company_name} company sustainability" as input), removing the stupid concurrency features I added because the random error notifications in the terminal are so annoying and I don't even think it improved the scraping speed by that much.
+  * Areas in need of improvement: removing the stupid concurrency features I added because the random error notifications in the terminal are so annoying and I don't even think it improved the scraping speed by that much.
