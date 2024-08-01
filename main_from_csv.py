@@ -22,8 +22,8 @@ BING_API_KEY = os.getenv('BING_API_KEY')
 CUSTOM_CONFIG_ID = os.getenv('CUSTOM_CONFIG_ID')
 
 # Feel free to change "num_results". It controls the amount of URLs the function will look at.
-def bing_search(query, api_key, custom_config_id, num_results=5, excluded_site=''):
-    search_query = f'intext:"{query}" company sustainability -site:{excluded_site}' if excluded_site else f'intext:"{query}"'
+def bing_search(company_name, api_key, custom_config_id, num_results=5, excluded_site=''):
+    search_query = f'intext:"{company_name}" company sustainability -site:{excluded_site}' if excluded_site else f'intext:"{company_name}" company sustainability'
     search_url = f"https://api.bing.microsoft.com/v7.0/custom/search?q={search_query}&customconfig={custom_config_id}"
     headers = {'Ocp-Apim-Subscription-Key': api_key}
     params = {'count': num_results}
@@ -102,6 +102,7 @@ def split_text_into_chunks(text, max_tokens=4096):
 
     return chunks
 
+# Double check to make sure company name is in website's text
 def contains_exact_company_name(text, company_name):
     return company_name.lower() in text.lower()
 
@@ -112,9 +113,8 @@ def main():
     
     for company in companies:
         company_name = company['Company']
-        query = f"{company_name}"
         excluded_site = company['Website']
-        urls = bing_search(query, BING_API_KEY, CUSTOM_CONFIG_ID, excluded_site=excluded_site)
+        urls = bing_search(company_name, BING_API_KEY, CUSTOM_CONFIG_ID, excluded_site=excluded_site)
         print(f"Found {len(urls)} URLs for {company_name}")
 
         filtered_content = []
@@ -156,6 +156,7 @@ def main():
 
         print(f"Filtering complete for {company_name}. Content saved to {company_name}_filtered.txt")
 
+        # Sleep to avoid Bing request limit
         time.sleep(5)
 
 if __name__ == "__main__":
