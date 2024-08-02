@@ -24,7 +24,7 @@ We use selenium for scraping and GPT-4o-mini for text processing.
 - **Custom Bing Search API**: Leverages Bing's Custom Search JSON API to retrieve relevant URLs based on the query.
 - **Content Filtering**: Excludes URLs that are from the company's official website or contain undesirable paths (e.g., downloads or lists).
 - **Concurrency**: Uses `ThreadPoolExecutor` for concurrent scraping, enhancing the speed and efficiency of data collection (might remove).
-- **Text Classification**: Employs GPt-4o-mini API to organize text and extract only information related to sustainability.
+- **Text Classification**: Employs GPT-4o-mini API to organize text and extract only information related to sustainability.
 
 
 
