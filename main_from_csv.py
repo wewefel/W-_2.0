@@ -168,7 +168,7 @@ def main():
         print(f"Filtering complete for {company_name}. Content saved to {filtered}")
 
         # Sleep to avoid Bing request limit
-        time.sleep(5)
+        time.sleep(3)
 
 if __name__ == "__main__":
     main()
