@@ -22,7 +22,7 @@ BING_API_KEY = os.getenv('BING_API_KEY')
 CUSTOM_CONFIG_ID = os.getenv('CUSTOM_CONFIG_ID')
 
 # Feel free to change "num_results". It controls the amount of URLs the function will look at.
-def bing_search(company_name, api_key, custom_config_id, num_results=5, excluded_site=''):
+def bing_search(company_name, api_key, custom_config_id, num_results=8, excluded_site=''):
     search_query = f'intext:"{company_name}" company sustainability -site:{excluded_site}' if excluded_site else f'intext:"{company_name}" company sustainability'
     search_url = f"https://api.bing.microsoft.com/v7.0/custom/search?q={search_query}&customconfig={custom_config_id}"
     headers = {'Ocp-Apim-Subscription-Key': api_key}
@@ -45,7 +45,7 @@ def scrape_url(url):
     chrome_options.add_argument("--headless")
     chrome_options.add_argument("--no-sandbox")
     chrome_options.add_argument("--disable-dev-shm-usage")
-    chrome_driver_path = r"C:\....\chromedriver.exe" # Change this to your own chromedriver.exe path
+    chrome_driver_path = r"C:\Users\wefel\chromedriver-win64\chromedriver-win64\chromedriver.exe"
     service = Service(chrome_driver_path)
     driver = webdriver.Chrome(service=service, options=chrome_options)
     
@@ -66,9 +66,9 @@ def scrape_url(url):
 
 # Function to filter sustainability content using GPT-4o-mini.
 # The prompt may be fine-tuned to give better results.
-def filter_sustainability_content(chunk):
+def filter_sustainability_content(chunk, company_name):
     prompt = (
-        "Please extract and retain only the information related to the specific company's sustainability (environmental, social, governance) claims and efforts. "
+        "Please extract and retain only the information related to the specific company's sustainability (environmental, social, governance) claims and efforts. Make sure the claims you extract are specifically about the company being assessed, {company_name}. I do not want information from other companies."
         "Also get info about the company's address and company size or number of employees. If no sustainability information is found in the current chunk, do not write anything. "
         "Also, while filtering the text, make sure to remove any empty lines or empty spaces. The final extracted results should only be organized, complete sentences about the company's sustainability practices."
         "from the following text:\n\n"
@@ -119,7 +119,16 @@ def main():
 
         filtered_content = []
 
-        with open(f"{company_name}_unfiltered.txt", "w", encoding="utf-8") as file:
+        current_directory = os.path.dirname(os.path.abspath(__file__))
+        data_directory = os.path.join(current_directory, 'data')
+
+        # Ensure the 'data' directory exists
+        if not os.path.exists(data_directory):
+            os.makedirs(data_directory)
+
+        unfiltered = os.path.join(data_directory, f"{company_name}_unfiltered.txt")
+
+        with open(unfiltered, "w", encoding="utf-8") as file:
             # Use ThreadPoolExecutor to scrape URLs in parallel
             with ThreadPoolExecutor(max_workers=4) as executor:  # Adjust the number of workers as needed
                 future_to_url = {executor.submit(scrape_url, url): url for url in urls}
@@ -138,9 +147,11 @@ def main():
                     except Exception as exc:
                         print(f"Error scraping {url}: {exc}")
 
-        print(f"Scraping complete for {company_name}. Content saved to {company_name}_unfiltered.txt")
+        print(f"Scraping complete for {company_name}. Content saved to {unfiltered}")
 
-        with open(f"{company_name}_unfiltered.txt", "r", encoding="utf-8") as file:
+        filtered = os.path.join(data_directory, f"{company_name}_filtered.txt")
+
+        with open(unfiltered, "r", encoding="utf-8") as file:
             data = file.read()
 
         chunks = split_text_into_chunks(data, max_tokens=4000)
@@ -148,13 +159,13 @@ def main():
 
         for i, chunk in enumerate(chunks):
             print(f"Processing chunk {i+1}/{len(chunks)} for {company_name}...")
-            filtered_chunk = filter_sustainability_content(chunk)
+            filtered_chunk = filter_sustainability_content(chunk, company_name)
             filtered_content.append(filtered_chunk)
 
-        with open(f"{company_name}_filtered.txt", "w", encoding="utf-8") as file:
+        with open(filtered, "w", encoding="utf-8") as file:
             file.write("\n\n".join(filtered_content))
 
-        print(f"Filtering complete for {company_name}. Content saved to {company_name}_filtered.txt")
+        print(f"Filtering complete for {company_name}. Content saved to {filtered}")
 
         # Sleep to avoid Bing request limit
         time.sleep(5)
