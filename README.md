@@ -12,7 +12,7 @@
 
 
 ## Overview
-This project consists of a Python web scraper that searches for and extracts information related to environmental and sustainability efforts of a specified company from URLs that are not the company's official website.  
+Python web scraper that searches for and extracts information related to environmental and sustainability efforts of a specified company from URLs that are not the company's official website.  
  
 We use selenium for scraping and GPT-4o-mini for text processing.
 
